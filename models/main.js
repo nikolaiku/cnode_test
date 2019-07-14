@@ -47,7 +47,7 @@ class Model {
     static create(form = {}) {
         const cls = this
         const instance = new cls(form)
-        retusn instance
+        return instance
     }
 
     static findOne(key, value) {
@@ -62,4 +62,70 @@ class Model {
 
         return m
     }
+
+    static find(key, value) {
+        const all = this.all()
+        let models = []
+        all.forEach((m) => {
+            if (m[key] === value) {
+                models.push(m)
+            }
+        })
+
+        return models
+    }
+
+    static get(id) {
+        id = parseInt(id, 10)
+        console.log('debug id', id)
+        return this.findOne('id', id)
+    }
+
+    save() {
+        const cls = this.constructor
+        const models = cls.all()
+        if (this.id == undefined) {
+            if (models.length > 0) {
+                const last = models[models.length - 1]
+                this.id = last.id + 1
+            } else {
+                this.id = 0
+            }
+            models.push(this)
+        } else {
+            let index = -1
+            for (let i = 0; i < models.length; i++) {
+                const m = models[i]
+                if (m.id === this.id) {
+                    index = i
+                    break
+                }
+            }
+            if (index > -1) {
+                models[index] = this
+            }
+        }
+        const path = cls.dbPath()
+        save(models, path)
+    }
+
+    static remove(id) {
+        const cls = this
+        const models = cls.all()
+        const index = models.findeIndex((e) => {
+            return e.id === id
+        })
+        if (index > -1) {
+            models.splice(index, 1)
+        }
+        const path = cls.dbPath()
+        save(models, path)
+    }
+
+    toString() {
+        const s = JSON.stringify(this, null, 2)
+        return s
+    }
 }
+
+module.exports = Model

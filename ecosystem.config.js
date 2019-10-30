@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: 'cnode',
-    script: 'nodemon app.js',
+    script: 'node app.js',
     args: 'one two',
     instances: 1,
     autorestart: true,

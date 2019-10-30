@@ -2,23 +2,25 @@ const Model = require('./main')
 const crypto = require('crypto')
 
 class User extends Model {
-    constructor(form = {}) {
+    constructor(form={}) {
         super()
         this.id = form.id
         this.username = form.username || ''
         this.password = form.password || ''
         this.note = form.note || ''
+        this.role = 2
+        // 添加头像的路径, 默认应该放一张头像的, 这里直接用一个空字符串表示
+        this.avatar = ''
     }
 
-    static create(form = {}) {
+    static create(form={}) {
         form.password = this.saltedPassword(form.password)
-
         const u = super.create(form)
         u.save()
         return u
     }
 
-    static saltedPassword(password, salt = 'node8') {
+    static saltedPassword(password, salt='node8') {
         function _sha1(s) {
             const algorithm = 'sha1'
             const hash = crypto.createHash(algorithm)
@@ -32,50 +34,54 @@ class User extends Model {
     }
 
     validateAuth(form) {
-        const cls = this.constructor;
-        const { username, password } = form;
-        const pwd = cls.saltedPassword(password);
-        const usernameEquals = this.username === username;
-        const passwordEquals = this.password === pwd;
-        return usernameEquals && passwordEquals;
+        const cls = this.constructor
+        const { username, password } = form
+        const pwd = cls.saltedPassword(password)
+        const usernameEquals = this.username === username
+        const passwordEquals = this.password === pwd
+        return usernameEquals && passwordEquals
     }
 
-    static login(form = {}) {
-        const { username, password } = form;
-        const pwd = this.saltedPassword(password);
-        const u = User.findOne('username', username);
-        return u !== null && u.password === pwd;
+    static login(form={}) {
+        const { username, password } = form
+        const pwd = this.saltedPassword(password)
+        const u = User.findOne('username', username)
+        return u !== null && u.password === pwd
     }
 
-    static register(form = {}) {
-        const { username, password } = form;
-        const validForm = username.length > 2 && password.length > 2;
-        const uniqueUser = User.findOne('username', username) === null;
+    static register(form={}) {
+        const { username, password } = form
+        const validForm = username.length > 2 && password.length > 2
+        const uniqueUser = User.findOne('username', username) === null
         if (validForm && uniqueUser) {
-            const u = this.create(form);
-            u.save();
-            return u;
+            const u = this.create(form)
+            u.save()
+            return u
         } else {
-            return null;
+            return null
         }
+    }
+
+    isAdmin() {
+        return this.id === 1
     }
 }
 
 const test = () => {
-    const u1 = User.findOne('username', 'gua')
-    u1.validateAuth({})
+    // const u1 = User.findBy('username', 'gua')
     // const u2 = User.findBy({
     //     username: 'gua',
     // })
     // console.log('debug u1', u1)
     // console.log('debug u2', u2)
-    // const form = {
-    //     username: 'lin',
-    //     password: '12345',
-    //     note: 'py',
-    // }
-    // const u = User.login(form)
-    // console.log('debug u', u)
+    const form = {
+        username: 'lin',
+        password: '12345',
+        note: 'py',
+    }
+    User.create(form)
+    const u = User.login(form)
+    console.log('debug u', u)
 }
 
 // 当 nodejs 直接运行一个文件时, require.main 会被设为它的 module
@@ -83,6 +89,5 @@ const test = () => {
 if (require.main === module) {
     test()
 }
-
 
 module.exports = User

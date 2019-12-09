@@ -18,7 +18,11 @@ const currentUser = (request) => {
             username: '游客',
             isAdmin: function() {
                 return false
-            }
+            },
+            isVip: function() {
+
+            },
+
         }
         return fakeUser
     } else {
@@ -31,12 +35,14 @@ const loginRequired = (request, response, next) => {
     if (u.id === -1) {
         log('登录检测: 没有登录', request.method)
         const baseUrl = '/login'
+        // 如果是发送的 GET, 登录完成后就跳转到 next_url
+        // 否则直接跳转到登录页面就行
         if (request.method === 'GET') {
-            response.redirect(baseUrl)
-        } else {
             // 应该用一个函数来生成 url, 这里的写法实际上并不好, 因为以后可能还会添加相关的数据
             const nextUrl = baseUrl + '?next_url=' + request.originalUrl
             response.redirect(nextUrl)
+        } else {
+            response.redirect(baseUrl)
         }
     } else {
         log('如果登录了就什么都不做, 继续下一个请求函数')
@@ -56,14 +62,15 @@ const adminRequired = (request, response, next) => {
         //     message: '管理员才能访问这个页面',
         // }
         // response.redirect('/login')
-
         const baseUrl = '/login'
+        // 如果是发送的 GET, 登录完成后就跳转到 next_url
+        // 否则直接跳转到登录页面就行
         if (request.method === 'GET') {
-            response.redirect(baseUrl)
-        } else {
             // 应该用一个函数来生成 url, 这里的写法实际上并不好, 因为以后可能还会添加相关的数据
             const nextUrl = baseUrl + '?next_url=' + request.originalUrl
             response.redirect(nextUrl)
+        } else {
+            response.redirect(baseUrl)
         }
     }
 }

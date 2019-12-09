@@ -14,13 +14,5 @@
     "note": "",
     "role": 2,
     "avatar": "c85c42ee3f09dc6dbf8f7f2cbcb2f664"
-  },
-  {
-    "id": 3,
-    "username": "kuuu",
-    "password": "87f1d515679d6dc83279c9380a625245071283c7",
-    "note": "",
-    "role": 2,
-    "avatar": "c85c42ee3f09dc6dbf8f7f2cbcb2f664"
   }
 ]

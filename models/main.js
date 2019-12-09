@@ -23,6 +23,24 @@ const load = (path) => {
 }
 
 class Model {
+    static cachedAll() {
+        // 判断下, this._all 这个变量是否存在
+        // 如果存在这个变量, 说明已经从数据库获取过数据,
+        // 并且把获取的结果赋值给 this_all, 我们直接返回就好了
+        // 如果不存在这个变量, 那就先去获取, 然后把获取的结果赋值给 this._all
+
+        // 注意, 这里的代码只是伪代码, 并不只能直接运行, 只是为了表达意思
+        if (this._all === undefined) {
+            // 如果数据库没有改变, 就直接返回缓存的数据
+            const fileChanged = true
+            if (fileChanged) {
+                this._all = this.all()
+            }
+            // file_ut = 获取文件的最后修改时间
+        }
+        return this._all
+    }
+
     static dbPath() {
         const classname = this.name.toLowerCase()
         const path = require('path')

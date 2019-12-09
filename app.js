@@ -79,6 +79,7 @@ const reply = require('./routes/reply')
 // 所以需要解包
 const { board } = require('./routes/board')
 const { user } = require('./routes/user')
+const { zujm } = require('./routes/zujm')
 
 // 使用 app.use(path, route) 的方式注册路由程序
 app.use('/', index)
@@ -86,10 +87,14 @@ app.use('/topic', topic)
 app.use('/reply', reply)
 app.use('/board', board)
 app.use('/user', user)
+app.use('/zujm', zujm)
 
 
 const apiTopic = require('./api/topic')
 app.use('/api/topic', apiTopic)
+
+const apiMovie = require('./api/movie')
+app.use('/api/movie', apiMovie)
 
 
 // 注意, 404 和 500 的路由一定是放在所有路由后面的
@@ -98,7 +103,8 @@ app.use((request, response) => {
     response.render('404.html')
 })
 
-app.use((error, request, response) => {
+// 500 错误的回调有四个参数, 最后的 next 是一个套路
+app.use((error, request, response, next) => {
     console.error(error.stack)
     response.status(500)
     response.send('定制的 500 错误')

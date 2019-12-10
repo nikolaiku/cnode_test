@@ -17,6 +17,7 @@ index.get('/', (request, response) => {
     response.render('index/index.html', args)
 })
 
+// 获取页面
 index.get('/login', (request, response) => {
     const args = {
         next_url: request.query.next_url || ''
@@ -24,6 +25,7 @@ index.get('/login', (request, response) => {
     response.render('index/login.html', args)
 })
 
+// 调用接口
 index.post('/login', (request, response) => {
     const form = request.body
     const u = User.findOne('username', form.username)
@@ -35,10 +37,12 @@ index.post('/login', (request, response) => {
     }
 })
 
+// 获取页面
 index.get('/register', (request, response) => {
     response.render('index/register.html')
 })
 
+// 调用接口
 index.post('/register', (request, response) => {
     const form = request.body
     const u = User.create(form)

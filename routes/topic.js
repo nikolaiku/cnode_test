@@ -11,6 +11,7 @@ const { currentUser, loginRequired } = require('./main')
 const topic = express.Router()
 
 topic.get('/', (request, response) => {
+    console.log('>>>>>>>>>>>>>routes-topic-/->')
     const board_id = Number(request.query.board_id || -1)
     let ms = Topic.allList(board_id)
     // if (board_id === -1) {
@@ -30,6 +31,7 @@ topic.get('/', (request, response) => {
 })
 
 topic.get('/detail/:id', (request, response) => {
+    console.log('>>>>>>>>>>>>>routes-topic-detail->')
     const id = Number(request.params.id)
     // const t = Topic.findOne('id', id)
     // t.views += 1
@@ -45,6 +47,7 @@ topic.get('/detail/:id', (request, response) => {
 })
 
 topic.get('/new', (request, response) => {
+    console.log('>>>>>>>>>>>>>routes-topic-new->')
     const boards = Board.all()
     const args = {
         boards: boards,
@@ -53,6 +56,7 @@ topic.get('/new', (request, response) => {
 })
 
 topic.post('/add', (request, response) => {
+    console.log('>>>>>>>>>>>>>routes-topic-add->')
     // 获取添加 topic 的表单内容
     const form = request.body
     // 调用 create 方法保存 topic
@@ -64,6 +68,7 @@ topic.post('/add', (request, response) => {
 })
 
 topic.get('/delete/:id', loginRequired, (request, response) => {
+    console.log('>>>>>>>>>>>>>routes-topic-delete->')
     // :id 这个方式是动态路由, 意思是这个路由可以匹配一系列不同的路由
     // 动态路由是现在流行的路由设计方案
     // 动态路由的参数通过 request.params 获取
@@ -78,6 +83,7 @@ topic.get('/delete/:id', loginRequired, (request, response) => {
 })
 
 topic.get('/edit/:id', (request, response) => {
+    console.log('>>>>>>>>>>>>>routes-topic-edit->')
     const id = Number(request.params.id)
     const m = Model.get(id)
     const args = {
@@ -87,6 +93,7 @@ topic.get('/edit/:id', (request, response) => {
 })
 
 topic.post('/update', (request, response) => {
+    console.log('>>>>>>>>>>>>>routes-topic-update->')
     const form = request.body
     const m = Model.update(form)
     response.redirect('/todo')

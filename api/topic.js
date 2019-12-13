@@ -10,12 +10,14 @@ const { jsonResponse } = require('./main')
 const router = express.Router()
 
 router.post('/login', (request, response) => {
+    console.log('>>>>>>>>>>>>api-topic-login->')
     const form = request.body
     const obj = Model.fakeCreate(form)
     jsonResponse(request, response, obj)
 })
 
 router.get('/all', (request, response) => {
+    console.log('>>>>>>>>>>>>api-topic-all->')
     const ms = Model.all()
     log('debug ms', request.headers)
     const dict = {
@@ -27,6 +29,7 @@ router.get('/all', (request, response) => {
 })
 
 router.get('/detail/:id', (request, response) => {
+    console.log('>>>>>>>>>>>>api-topic-detail->')
     const id = Number(request.params.id)
     const m = Model.detail(id)
     const dict = {
@@ -38,6 +41,7 @@ router.get('/detail/:id', (request, response) => {
 })
 
 router.post('/add', (request, response) => {
+    console.log('>>>>>>>>>>>>api-topic-add->')
     const form = request.body
     console.log('debug body', form)
     const m = Model.create(form)

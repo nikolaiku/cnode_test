@@ -13,6 +13,7 @@ const topic = express.Router()
 topic.get('/', (request, response) => {
     console.log('>>>>>>>>>>>>>routes-topic-/->')
     const board_id = Number(request.query.board_id || -1)
+    const u = currentUser(request)
     let ms = Topic.allList(board_id)
     // if (board_id === -1) {
     //     ms = Topic.all()
@@ -25,8 +26,9 @@ topic.get('/', (request, response) => {
         topics: ms,
         boards: boards,
         board_id: board_id,
+        user: u
     }
-    // log('debug args', args)
+    
     response.render('topic/index.html', args)
 })
 

@@ -7,15 +7,20 @@ const { currentUser } = require('./main')
 const index = express.Router()
 
 index.get('/', (request, response) => {
-    console.log('>>>>>>>>>>>>>routes-index-/->')
-    const userList = User.all()
-    const u = currentUser(request)
-    const args = {
-        users: userList,
-        user: u,
-    }
-    console.log('debug u and args', u, args)
-    response.render('index/index.html', args)
+    response.redirect('/topic')
+
+    // const userList = User.all()
+    // const u = currentUser(request)
+    // const args = {
+    //     users: userList,
+    //     user: u,
+    // }
+  
+    // if (u.id == -1) {
+    //     response.render('index/index.html', args)
+    // } else {
+    //     response.redirect('/topic')
+    // }
 })
 
 // 获取页面
@@ -27,7 +32,7 @@ index.get('/login', (request, response) => {
     response.render('index/login.html', args)
 })
 
-// 调用接口
+// 验证用户名和密码后重定向到nextUrl
 index.post('/login', (request, response) => {
     console.log('>>>>>>>>>>>>>routes-index-login-post->')
     const form = request.body
@@ -46,7 +51,7 @@ index.get('/register', (request, response) => {
     response.render('index/register.html')
 })
 
-// 调用接口
+// 注册用户后重定向
 index.post('/register', (request, response) => {
     console.log('>>>>>>>>>>>>>routes-index-register-post->')
     const form = request.body
@@ -54,6 +59,7 @@ index.post('/register', (request, response) => {
     response.redirect('/')
 })
 
+//清除数据后重定向
 index.get('/logout', (request, response) => {
     console.log('>>>>>>>>>>>>>routes-index-logout->')
     // 注销登录的时候, 将 session 清空就可以了

@@ -7,16 +7,23 @@
 </head>
 
 <body>
-    <a href="/topic">话题</a>
-    <a href="/board">版块</a>
-    <a href="/login">登录</a>
-    <a href="/register">注册</a>
-    <a href="/logout">注销</a>
-    <!--用户名, 会出现在网页源码中-->
-    {# 用户名 来自服务器端的注释, 不会出现在网页源码中 #}
-    <span>欢迎登录，{{ user.username }}</span>
-
-    <script>
+    <div>
+        <!--用户名, 会出现在网页源码中-->
+        {# 用户名 来自服务器端的注释, 不会出现在网页源码中 #}
+        <span>欢迎登录，{{ user.username }}</span>
+        {% if user.avatar %}
+        <img src="{{ user.avatar }}" alt="">
+        <a href="/logout">注销</a>
+        {% else %}
+        <a href="/login">登录</a>
+        <a href="/register">注册</a>
+        {% endif %}
+    </div>
+    <div>
+        <a href="/topic">话题</a>
+        <!-- <a href="/board">版块</a> -->
+    </div>
+    <!-- <script>
         var ajax = (method, path, data, callback) => {
             var r = new XMLHttpRequest()
             r.open(method, path, true)
@@ -40,7 +47,7 @@
         var getTopicAll = () => {
             var url = '/api/topic/all'
             var response = (r) => {
-                console.log('getTopicAll-->', r)
+                console.log('getTopicAll>>>>>>', r)
             }
             fetch(url, response)
         }
@@ -50,7 +57,7 @@
         }
 
         __main()
-    </script>
+    </script> -->
 </body>
 
 </html>

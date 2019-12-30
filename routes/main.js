@@ -16,11 +16,12 @@ const currentUser = (request) => {
         const fakeUser = {
             id: -1,
             username: '游客',
-            isAdmin: function() {
+            avatar: '',
+            isAdmin: function () {
                 return false
             },
-            isVip: function() {
-
+            isVip: function () {
+                return false
             },
 
         }

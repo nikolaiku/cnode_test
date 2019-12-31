@@ -3,7 +3,7 @@ const express = require('express')
 const Topic = require('../models/topic')
 const Board = require('../models/board')
 const Model = Topic
-const { log } = require('../utils')
+const { log, formattedTime } = require('../utils')
 const { currentUser, loginRequired } = require('./main')
 
 // 使用 express.Router 可以创建模块化的路由
@@ -11,10 +11,14 @@ const { currentUser, loginRequired } = require('./main')
 const topic = express.Router()
 
 topic.get('/', (request, response) => {
-    console.log('>>>>>>>>>>>>>routes-topic-/->')
     const board_id = Number(request.query.board_id || -1)
     const u = currentUser(request)
-    const ms = Topic.allList(board_id)
+    var ms = Topic.allList(board_id)
+
+    for (let i in ms) {
+        ms[i].ut = formattedTime(ms[i].ut)
+    }
+
     const boards = Board.all()
     const args = {
         topics: ms,
@@ -22,7 +26,7 @@ topic.get('/', (request, response) => {
         board_id: board_id,
         user: u
     }
-    
+
     response.render('topic/index.html', args)
 })
 
@@ -54,6 +58,12 @@ topic.post('/add', (request, response) => {
     response.redirect('/topic')
 })
 
+topic.post('/update', (request, response) => {
+    const form = request.body
+    const m = Model.update(form)
+    response.redirect('/todo')
+})
+
 topic.get('/delete/:id', loginRequired, (request, response) => {
     // :id 这个方式是动态路由, 意思是这个路由可以匹配一系列不同的路由
     // 动态路由是现在流行的路由设计方案
@@ -75,12 +85,6 @@ topic.get('/edit/:id', (request, response) => {
         topic: m,
     }
     response.render('todo/edit.html', args)
-})
-
-topic.post('/update', (request, response) => {
-    const form = request.body
-    const m = Model.update(form)
-    response.redirect('/todo')
 })
 
 module.exports = topic

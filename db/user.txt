@@ -1,40 +1,16 @@
 [
   {
     "id": 1,
-    "username": "gua",
-    "password": "6aa61ba1213b734b79cd659110994562d085d326",
-    "note": "",
-    "role": 2,
-    "avatar": "245a05b4f3595a3231af58c3762b81fb"
-  },
-  {
-    "id": 2,
-    "username": "lin",
-    "password": "6aa61ba1213b734b79cd659110994562d085d326",
-    "note": "",
-    "role": 2,
-    "avatar": "c85c42ee3f09dc6dbf8f7f2cbcb2f664"
-  },
-  {
-    "id": 3,
     "username": "123",
-    "password": "6aa61ba1213b734b79cd659110994562d085d326",
+    "password": "702e811c4f595b4aefc775dcdb9ebac2d4608737",
     "note": "",
-    "role": 2,
+    "role": 1,
     "avatar": "https://avatars3.githubusercontent.com/u/27951782?s=40&v=4"
   },
   {
-    "id": 4,
+    "id": 2,
     "username": "1234",
     "password": "702e811c4f595b4aefc775dcdb9ebac2d4608737",
-    "note": "",
-    "role": 2,
-    "avatar": ""
-  },
-  {
-    "id": 5,
-    "username": "1111",
-    "password": "28f9bfbf250e6a89b8bc1b1d9792158031b32be0",
     "note": "",
     "role": 2,
     "avatar": ""

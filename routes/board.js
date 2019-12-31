@@ -28,6 +28,16 @@ main.get('/new', (request, response) => {
     response.render('board/new.html')
 })
 
+main.get('/edit/:id', adminRequired, (request, response) => {
+    const id = Number(request.params.id)
+    const m = Model.get(id)
+    log('model', m)
+    const args = {
+        board: m,
+    }
+    response.render('board/edit.html', args)
+})
+
 main.post('/add', (request, response) => {
     const form = request.body
     const m = Model.create(form)
@@ -44,16 +54,6 @@ main.get('/delete/:id', loginRequired, (request, response) => {
     } else {
         response.status(403).send('我隐藏起来了')
     }
-})
-
-main.get('/edit/:id', adminRequired, (request, response) => {
-    const id = Number(request.params.id)
-    const m = Model.get(id)
-    log('model', m)
-    const args = {
-        board: m,
-    }
-    response.render('board/edit.html', args)
 })
 
 main.post('/update', (request, response) => {

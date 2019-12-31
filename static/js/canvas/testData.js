@@ -58,6 +58,12 @@ var member = [
         "name": "express"
     }, {
         "phone": "",
+        "name": "ejs"
+    }, {
+        "phone": "",
+        "name": "nunjucks"
+    }, {
+        "phone": "",
         "name": "nuxt"
     }, {
         "phone": "",
@@ -74,5 +80,11 @@ var member = [
     }, {
         "phone": "",
         "name": "phaser"
+    }, {
+        "phone": "",
+        "name": "React-native"
+    }, {
+        "phone": "",
+        "name": "Electron"
     }
 ]

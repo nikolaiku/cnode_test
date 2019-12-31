@@ -568,6 +568,11 @@ a.topic_title {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.topic_title_wrapper .time{
+  color: #cccccc;
+  font-size: 12px;
+  float: right;
+}
 .put_top,
 .put_good {
   background: #80bd01;

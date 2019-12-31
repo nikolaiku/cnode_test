@@ -16,38 +16,36 @@
 </head>
 
 <body>
+    <div id="canvas"></div>
     <div id="wrapper">
         <div id="header">
             {% if user.avatar %}
             <a href="/logout">退出</a>
             {% else %}
             <a href="/login">登录</a>
-            
+
             {% endif %}
         </div>
         <div id="main">
             <div id="sidebar">
                 <div class="panel">
-                    <div class="inner">
-                        欢迎登录，{{ user.username }} 
-                        {% if user.avatar %}
-                        <img src="{{ user.avatar }}" alt="">
-                        {% endif %}
+                    <div class="header">
+                        个人信息
                     </div>
-                </div>
-                <div class="panel">
                     <div class="inner">
+                        欢迎登录，{{ user.username }} {% if user.avatar %}
+                        <img src="{{ user.avatar }}" alt="">
                         <a href="/topic/new" class="create_topic_btn">
                             <span class="span-success">发布话题</span>
                         </a>
+                        {% endif %}
                     </div>
                 </div>
+
             </div>
             <div id="content">
                 <div class="panel">
                     <div class="header">
-                        <!--这个 board 并不在数据库中, 直接判断当前的 board_id 是否为 -1-->
-                        <!--如果是 -1, 就添加 current-tab 这个 class, 否则不添加-->
                         <a href="/topic" class="topic-tab current-tab">
                             全部
                         </a>
@@ -81,8 +79,47 @@
         </div>
     </div>
 
+    <script src="/static/js/canvas/global.js"></script>
+    <script src="/static/js/canvas/testData.js"></script>
     <script>
         (function () {
+            var choosed = JSON.parse(localStorage.getItem('choosed')) || {};
+            var speed = function () {
+                return [0.1 * Math.random() + 0.01, -(0.1 * Math.random() + 0.01)];
+            };
+            var getKey = function (item) {
+                return item.name + '-' + item.phone;
+            };
+            var createHTML = function () {
+                var html = ['<ul>'];
+                member.forEach(function (item, index) {
+                    item.index = index;
+                    var key = getKey(item);
+                    var color = choosed[key] ? 'yellow' : 'white';
+                    html.push('<li><a href="#" style="color: ' + color + ';">' + item.name + '</a></li>');
+                });
+                html.push('</ul>');
+                return html.join('');
+            };
+
+
+            console.log('width->', $("#header").width())
+            var w = $("#header").width()
+            var canvas = document.createElement('canvas');
+            canvas.id = 'myCanvas';
+            canvas.width = w;
+            canvas.height = w / 4 * 3;
+            document.getElementById('canvas').appendChild(canvas);
+
+            canvas.innerHTML = createHTML();
+            TagCanvas.Start('myCanvas', '', {
+                textColour: null,
+                initial: speed(),
+                dragControl: 1,
+                textHeight: 14
+            });
+
+
             var editor = new Editor();
             editor.render($('.editor')[0]);
         })();

@@ -1,11 +1,22 @@
 [
   {
+    "id": 10000000000,
+    "username": "admin",
+    "password": "702e811c4f595b4aefc775dcdb9ebac2d4608737",
+    "note": "",
+    "role": 1,
+    "visible": 0,
+    "avatar": "https://avatars3.githubusercontent.com/u/27951782?s=40&v=4"
+  },
+  {
     "id": 1,
     "username": "123",
     "password": "702e811c4f595b4aefc775dcdb9ebac2d4608737",
     "note": "",
     "role": 1,
-    "avatar": "https://avatars3.githubusercontent.com/u/27951782?s=40&v=4"
+    "visible": 1,
+    "avatar": "https://avatars3.githubusercontent.com/u/27951782?s=40&v=4",
+    "ut": 1577952793286
   },
   {
     "id": 2,
@@ -13,6 +24,7 @@
     "password": "702e811c4f595b4aefc775dcdb9ebac2d4608737",
     "note": "",
     "role": 2,
+    "visible": 1,
     "avatar": ""
   }
 ]

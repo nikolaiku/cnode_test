@@ -32,7 +32,9 @@
                         个人信息
                     </div>
                     <div class="inner">
-                        欢迎登录，{{ user.username }} {% if user.id != -1 %}
+                        欢迎登录，{{ user.username }} 
+                    
+                        {% if user.id != -1 %}
                         <img src="{{ user.avatar }}" alt="">
                         <div>
                             <a href="/topic/new" class="create_topic_btn">

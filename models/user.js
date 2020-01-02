@@ -9,6 +9,7 @@ class User extends Model {
         this.password = form.password || ''
         this.note = form.note || ''
         this.role = 2
+        this.visible = 1
         // 添加头像的路径, 默认应该放一张头像的, 这里直接用一个空字符串表示
         this.avatar = ''
     }
@@ -42,6 +43,12 @@ class User extends Model {
         return usernameEquals && passwordEquals
     }
 
+    static getUserList(form = {}) {
+        const userList = User.all()
+        let arr = userList.filter(itm => itm.visible == 1)
+        return arr;
+    }
+
     static login(form = {}) {
         const { username, password } = form
         const pwd = this.saltedPassword(password)
@@ -71,6 +78,7 @@ class User extends Model {
                 m[k] = form[k]
             }
         })
+        
         m.ut = Date.now()
         m.save()
         return m

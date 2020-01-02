@@ -25,7 +25,6 @@ index.get('/', (request, response) => {
 
 // 获取页面
 index.get('/login', (request, response) => {
-    console.log('>>>>>>>>>>>>>routes-index-login-get->')
     const args = {
         next_url: request.query.next_url || ''
     }
@@ -34,7 +33,6 @@ index.get('/login', (request, response) => {
 
 // 验证用户名和密码后重定向到nextUrl
 index.post('/login', (request, response) => {
-    console.log('>>>>>>>>>>>>>routes-index-login-post->')
     const form = request.body
     const u = User.findOne('username', form.username)
     if (u.validateAuth(form)) {

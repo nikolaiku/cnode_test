@@ -18,7 +18,7 @@ const main = express.Router()
 var tokens = []
 
 main.get('/', (request, response) => {
-    const us = User.all()
+    const us = User.getUserList()
     const u = currentUser(request)
     const token = Math.random()
     tokens.push(token)
@@ -36,9 +36,11 @@ main.get('/delete/:id', loginRequired, (request, response) => {
     response.redirect('/user/')
 })
 
-main.get('/auth/:id/:auth', loginRequired, (request, response) => {
+main.get('/auth/:id/:role', loginRequired, (request, response) => {
     const id = Number(request.params.id)
-    const auth = Number(request.params.auth)
+    const role = Number(request.params.role)
+    User.update({ id, role })
+    response.redirect('/user/')
 })
 
 // 用户的个人资料页面的路由

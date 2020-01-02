@@ -78,7 +78,7 @@ class User extends Model {
                 m[k] = form[k]
             }
         })
-        
+
         m.ut = Date.now()
         m.save()
         return m
@@ -93,7 +93,8 @@ class User extends Model {
     }
 
     isAdmin() {
-        return this.id === 1
+        // return this.id === 1
+        return this.role === 1
     }
 }
 

@@ -54,7 +54,7 @@ index.post('/register', (request, response) => {
     console.log('>>>>>>>>>>>>>routes-index-register-post->')
     const form = request.body
     const u = User.create(form)
-    response.redirect('/')
+    response.redirect('/login')
 })
 
 //清除数据后重定向

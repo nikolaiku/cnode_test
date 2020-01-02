@@ -5,7 +5,7 @@
 + 增加node和浏览器都可以用的调用接口
 
 #### 运行
-+ npm install
++ npm install / yarn install
 + npm run dev
 
 #### 献上地址

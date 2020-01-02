@@ -13,8 +13,33 @@ const upload = multer({
 const User = require('../models/user')
 const { log } = require('../utils')
 const { currentUser, loginRequired, } = require('./main')
-
 const main = express.Router()
+
+var tokens = []
+
+main.get('/', (request, response) => {
+    const us = User.all()
+    const u = currentUser(request)
+    const token = Math.random()
+    tokens.push(token)
+    const args = {
+        users: us,
+        u: u,
+        token: token
+    }
+    response.render('user/index.html', args)
+})
+
+main.get('/delete/:id', loginRequired, (request, response) => {
+    const id = Number(request.params.id)
+    const t = User.remove(id)
+    response.redirect('/user/')
+})
+
+main.get('/auth/:id/:auth', loginRequired, (request, response) => {
+    const id = Number(request.params.id)
+    const auth = Number(request.params.auth)
+})
 
 // 用户的个人资料页面的路由
 main.get('/profile/:id', loginRequired, (request, response) => {

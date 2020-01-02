@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+</head>
+
+<body>
+    <p>用户管理</p>
+    <ol>
+        {% for u in users %}
+        <li>
+            <span>{{ u.username }}</span>
+            {% if u.role == 1%}
+            <span>管理员</span>
+            <a href="/user/auth/{{ u.id }}/0?token={{ token }}">减权</a>
+            {% else %}
+            <span>普通用户</span>
+            <a href="/user/auth/{{ u.id }}/1?token={{ token }}">加权</a>
+            {% endif %}
+            <a href="/user/delete/{{ u.id }}?token={{ token }}">删除</a>
+        </li>
+        {% else %}
+        <li>暂无数据</li>
+        {% endfor %}
+    </ol>
+</body>
+
+</html>

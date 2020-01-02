@@ -96,6 +96,9 @@ app.use('/api/topic', apiTopic)
 const apiMovie = require('./api/movie')
 app.use('/api/movie', apiMovie)
 
+const apiUser = require('./api/user')
+app.use('/api/user', apiUser)
+
 
 // 注意, 404 和 500 的路由一定是放在所有路由后面的
 app.use((request, response) => {

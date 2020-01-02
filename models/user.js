@@ -2,7 +2,7 @@ const Model = require('./main')
 const crypto = require('crypto')
 
 class User extends Model {
-    constructor(form={}) {
+    constructor(form = {}) {
         super()
         this.id = form.id
         this.username = form.username || ''
@@ -13,14 +13,14 @@ class User extends Model {
         this.avatar = ''
     }
 
-    static create(form={}) {
+    static create(form = {}) {
         form.password = this.saltedPassword(form.password)
         const u = super.create(form)
         u.save()
         return u
     }
 
-    static saltedPassword(password, salt='node8') {
+    static saltedPassword(password, salt = 'node8') {
         function _sha1(s) {
             const algorithm = 'sha1'
             const hash = crypto.createHash(algorithm)
@@ -42,14 +42,14 @@ class User extends Model {
         return usernameEquals && passwordEquals
     }
 
-    static login(form={}) {
+    static login(form = {}) {
         const { username, password } = form
         const pwd = this.saltedPassword(password)
         const u = User.findOne('username', username)
         return u !== null && u.password === pwd
     }
 
-    static register(form={}) {
+    static register(form = {}) {
         const { username, password } = form
         const validForm = username.length > 2 && password.length > 2
         const uniqueUser = User.findOne('username', username) === null
@@ -62,18 +62,34 @@ class User extends Model {
         }
     }
 
+    static update(form = {}) {
+        const id = Number(form.id)
+        const m = this.get(id)
+        const keys = this.frozenKeys()
+        Object.keys(form).forEach((k) => {
+            if (!keys.includes(k)) {
+                m[k] = form[k]
+            }
+        })
+        m.ut = Date.now()
+        m.save()
+        return m
+    }
+
+    static frozenKeys() {
+        const l = [
+            'username',
+            'ct',
+        ]
+        return l
+    }
+
     isAdmin() {
         return this.id === 1
     }
 }
 
 const test = () => {
-    // const u1 = User.findBy('username', 'gua')
-    // const u2 = User.findBy({
-    //     username: 'gua',
-    // })
-    // console.log('debug u1', u1)
-    // console.log('debug u2', u2)
     const form = {
         username: 'lin',
         password: '12345',

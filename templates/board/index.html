@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>模板管理</title>
 </head>
+
 <body>
     <p>模板管理</p>
-    <a href="/board/new">新增 board</a>
+    <a href="/board/new">新增</a>
     {{ flash.message }}
     <ul>
         {% for b in boards %}
-            <li>
-                <span>{{ b.title }}</span>
-                <a href="/board/delete/{{ b.id }}?token={{ token }}">删除</a>
-                <a href="/board/edit/{{ b.id }}">编辑</a>
-            </li>
+        <li>
+            <span>{{ b.title }}</span>
+            <a href="/board/delete/{{ b.id }}?token={{ token }}">删除</a>
+            <a href="/board/edit/{{ b.id }}">编辑</a>
+        </li>
         {% else %}
-            <li>暂时还没有 board</li>
+        <li>暂无数据</li>
         {% endfor %}
     </ul>
 </body>
+
 </html>

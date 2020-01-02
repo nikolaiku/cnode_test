@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "views": 29,
+    "views": 33,
     "title": "hello",
     "content": "分享版块的主题",
     "ct": 1496476530688,
@@ -11,7 +11,7 @@
   },
   {
     "id": 3,
-    "views": 4,
+    "views": 6,
     "title": "world",
     "content": "node js 分享内容",
     "ct": 1496477545299,
@@ -38,5 +38,15 @@
     "ut": 1576034531997,
     "user_id": -1,
     "board_id": 4
+  },
+  {
+    "id": 6,
+    "views": 0,
+    "title": "效果不错啊",
+    "content": "如题如题",
+    "ct": 1577953465875,
+    "ut": 1577953465875,
+    "user_id": 4,
+    "board_id": 6
   }
 ]

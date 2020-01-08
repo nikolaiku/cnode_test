@@ -11,7 +11,7 @@
         body {
             margin: 0px;
             padding: 0px;
-            font-family: "PingFang SC","微软雅黑",  "宋体";
+            font-family: "PingFang SC", "微软雅黑", "宋体";
             font-size: 14px;
             height: 36px;
             color: #333333;
@@ -99,6 +99,14 @@
                     <li>{{ etm }}</li>
                     {% endfor %}
                 </ul>
+                {% if itm.demos %}
+                示例链接：
+                <ul>
+                    {% for etm in itm.demos %}
+                    <li>{{etm}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
             </div>
             {% endfor %}
         </div>

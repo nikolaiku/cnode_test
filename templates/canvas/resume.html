@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Resume</title>
+
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: "PingFang SC","微软雅黑",  "宋体";
+            font-size: 14px;
+            height: 36px;
+            color: #333333;
+            background-color: #e0e0e0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333333;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: 10px auto;
+            background-color: #ffffff;
+            border-radius: 3px;
+            padding: 5px;
+        }
+
+        .part {
+            margin-bottom: 20px;
+        }
+
+        .part .title {
+            color: #cccccc;
+            background-color: #ffffff;
+            padding-left: 10px;
+            margin-bottom: 5px;
+        }
+
+        .line {
+            width: 100%;
+            height: 1px;
+            border-top: 1px solid #cccccc;
+            margin-bottom: 10px;
+        }
+
+        .part .context {
+            font-size: 12px;
+            padding: 0px 10px;
+        }
+
+        .text {
+            margin-right: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="part">
+            <div class="title">个人信息</div>
+            <div class="line"></div>
+            {% for itm in info.personal %}
+            <div class="context">
+                <span class="text"> {{ itm.name }} </span>
+                <span class="text"> {{ itm.birth }} </span>
+                <span class="text"> {{ itm.mail }} </span>
+                <span class="text">
+                    <a href="{{ itm.github }}" target="_blank">{{ itm.github }}</a>
+                </span>
+                <span class="text"> {{ itm.phone }} </span>
+                <ul>
+                    {% for etm in itm.items %}
+                    <li>{{ etm }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="part">
+            <div class="title">工作</div>
+            <div class="line"></div>
+            {% for itm in info.experienceInWork %}
+            <div class="context">
+                <span class="text"> {{ itm.company }} </span>
+                <span> {{ itm.startTime }} - {{ itm.endTime }} </span>
+                <ul>
+                    {% for etm in itm.items %}
+                    <li>{{ etm }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="part">
+            <div class="title">项目</div>
+            <div class="line"></div>
+            {% for itm in info.projectInWorK %}
+            <div class="context">
+                <span class="text"> {{ itm.project }} </span>
+                <span> {{ itm.startTime }} - {{ itm.endTime }} </span>
+                <ul>
+                    {% for etm in itm.items %}
+                    <li>{{ etm }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="part">
+            <div class="title">教育</div>
+            <div class="line"></div>
+            {% for itm in info.education %}
+            <div class="context">
+                <span class="text"> {{ itm.school }} </span>
+                <span class="text"> {{ itm.startTime }} - {{ itm.endTime }} </span>
+                <span class="text"> {{ itm.degree }} </span>
+                <span class="text"> {{ itm.major }} </span>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="part">
+            <div class="title">兴趣</div>
+            <div class="line"></div>
+            {% for itm in info.hobby %}
+            <span class="text"> {{ itm }} </span>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

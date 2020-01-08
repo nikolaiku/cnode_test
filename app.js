@@ -1,3 +1,5 @@
+require('./mongoose_demo');
+
 const express = require('express')
 const nunjucks = require('nunjucks')
 const bodyParser = require('body-parser')
@@ -73,6 +75,7 @@ app.use((request, response, next) => {
 const topic = require('./routes/topic')
 const index = require('./routes/index')
 const reply = require('./routes/reply')
+const canvas = require('./routes/canvas')
 
 // 引入 board 路由
 // 这次 exports 的是 topic: main 的形式
@@ -88,6 +91,7 @@ app.use('/reply', reply)
 app.use('/board', board)
 app.use('/user', user)
 app.use('/zujm', zujm)
+app.use('/canvas', canvas)
 
 
 const apiTopic = require('./api/topic')
@@ -115,7 +119,7 @@ app.use((error, request, response, next) => {
 
 // 把逻辑放在单独的函数中, 这样可以方便地调用
 // 指定了默认的 host 和 port, 因为用的是默认参数, 当然可以在调用的时候传其他的值
-const run = (port=3000, host='') => {
+const run = (port = 3000, host = '') => {
     // app.listen 方法返回一个 http.Server 对象, 这样使用更方便
     // 实际上这个东西的底层是我们以前写的 net.Server 对象
     const server = app.listen(port, host, () => {

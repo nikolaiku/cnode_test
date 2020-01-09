@@ -258,7 +258,23 @@ Chicken = function () {
 
     // 翎毛
 
-    // 鸡翅膀   BoxGeometry
+    // 左鸡翅膀   BoxGeometry
+    var leftWingGeom = new THREE.BoxGeometry(2, 30, 20);
+    var leftWingMate = new THREE.MeshPhongMaterial({ color: Colors.yellow });
+    var leftWing = new THREE.Mesh(leftWingGeom, leftWingMate);
+    leftWing.position.set(-25, -40, 25);
+    leftWing.rotation.set(-10, -10, 0);
+    leftWing.receiveShadow = true;
+    this.mesh.add(leftWing)
+
+    // 右鸡翅膀   BoxGeometry
+    var rightWingGeom = new THREE.BoxGeometry(2, 30, 20);
+    var rightWingMate = new THREE.MeshPhongMaterial({ color: Colors.yellow });
+    var rightWing = new THREE.Mesh(rightWingGeom, rightWingMate);
+    rightWing.position.set(-25, -40, -25);
+    leftWing.rotation.set(0, 10, 10);
+    rightWing.receiveShadow = true;
+    this.mesh.add(rightWing)
 }
 
 // 3D Models
@@ -293,11 +309,24 @@ function createSky() {
 }
 
 function loop() {
+    updateChicken();
     // updatePlane();
     sea.mesh.rotation.z += .005;
     sky.mesh.rotation.z += .01;
     renderer.render(scene, camera);
     requestAnimationFrame(loop);
+}
+
+function updateChicken() {
+    var targetY = normalize(mousePos.y, -.75, .75, 25, 175);
+    var targetX = normalize(mousePos.x, -.75, .75, -100, 100);
+    // console.log('updateChicken->', targetX, targetY)
+    // if (targetX > 0) {
+    //     chick.mesh.rotation.y = targetX / 100;
+    // } else {
+    //     chick.mesh.rotation.y = targetX / 100;
+    // }
+
 }
 
 // function updatePlane() {

@@ -10,7 +10,7 @@ const data = {
       "items": [
         ["ES6/7", "h5"],
         ["vue", "express", "nuxt", "jquery"],
-        ["nunjucks", "ejs"],
+        ["nunjucks", "ejs", "juicer"],
         ["git", "http"],
         ["elementUI", "bootstrap"],
         ["hybrid混开", "微信支付及小程序"],

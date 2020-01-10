@@ -250,7 +250,7 @@ Chicken = function () {
     this.mesh.name = "chicken";
 
     // 身体 CylinderBufferGeometry
-    var bodyGeom = new THREE.CylinderBufferGeometry(20, 40, 120, 4);
+    var bodyGeom = new THREE.CylinderBufferGeometry(20, 40, 90, 4);
     var bodyMate = new THREE.MeshPhongMaterial({ color: Colors.yellow, shading: THREE.FlatShading });
     var body = new THREE.Mesh(bodyGeom, bodyMate);
     body.castShadow = true;
@@ -258,26 +258,30 @@ Chicken = function () {
     this.mesh.add(body)
 
     // 左眼睛 和 左瞳孔    BoxGeometry
-    var leftEyeGeom = new THREE.BoxGeometry(2, 15, 15);
-    var leftEyeMate = new THREE.MeshPhongMaterial({ color: Colors.white });
+    var leftEyeGeom = new THREE.BoxGeometry(3, 20, 20);
+    var leftEyeMate = new THREE.MeshPhongMaterial({ color: Colors.white, shading: THREE.FlatShading });
     this.leftEye = new THREE.Mesh(leftEyeGeom, leftEyeMate);
-    this.leftEye.position.set(-20, 40, 15);
+    this.leftEye.position.set(-20, 30, 15);
+    this.leftEye.rotateY(1);
+    this.leftEye.castShadow = true;
     this.leftEye.receiveShadow = true;
 
-    var leftPupilGeom = new THREE.BoxGeometry(2, 5, 5);
+    var leftPupilGeom = new THREE.BoxGeometry(4, 5, 5);
     var leftPupilMate = new THREE.MeshPhongMaterial({ color: Colors.black });
     var leftPupil = new THREE.Mesh(leftPupilGeom, leftPupilMate);
     this.leftEye.add(leftPupil)
     this.mesh.add(this.leftEye)
 
     // 右眼睛 和 右瞳孔    BoxGeometry
-    var rightEyeGeom = new THREE.BoxGeometry(2, 15, 15);
-    var rightEyeMate = new THREE.MeshPhongMaterial({ color: Colors.white });
+    var rightEyeGeom = new THREE.BoxGeometry(4, 20, 20);
+    var rightEyeMate = new THREE.MeshPhongMaterial({ color: Colors.white, shading: THREE.FlatShading });
     this.rightEye = new THREE.Mesh(rightEyeGeom, rightEyeMate);
-    this.rightEye.position.set(-20, 40, -15);
+    this.rightEye.position.set(-20, 30, -15);
+    this.leftEye.rotateY(-1);
+    this.rightEye.castShadow = true;
     this.rightEye.receiveShadow = true;
 
-    var rightPupilGeom = new THREE.BoxGeometry(2, 5, 5);
+    var rightPupilGeom = new THREE.BoxGeometry(4, 5, 5);
     var rightPupilMate = new THREE.MeshPhongMaterial({ color: Colors.black });
     var rightPupil = new THREE.Mesh(rightPupilGeom, rightPupilMate);
     this.rightEye.add(rightPupil)
@@ -287,7 +291,7 @@ Chicken = function () {
     var mouthGeom = new THREE.ConeBufferGeometry(5, 10, 4);
     var mouthMate = new THREE.MeshPhongMaterial({ color: Colors.red, shading: THREE.FlatShading });
     var mouth = new THREE.Mesh(mouthGeom, mouthMate);
-    mouth.position.set(-25, 25, 0);
+    mouth.position.set(-25, 15, 0);
     mouth.rotation.z = 8;
     mouth.castShadow = true;
     mouth.receiveShadow = true;
@@ -299,7 +303,7 @@ Chicken = function () {
     var leftWingGeom = new THREE.BoxGeometry(2, 30, 20);
     var leftWingMate = new THREE.MeshPhongMaterial({ color: Colors.yellow });
     var leftWing = new THREE.Mesh(leftWingGeom, leftWingMate);
-    leftWing.position.set(-25, -40, 25);
+    leftWing.position.set(-25, -30, 25);
     leftWing.rotation.set(-10, -10, 0);
     leftWing.receiveShadow = true;
     this.mesh.add(leftWing)
@@ -308,7 +312,7 @@ Chicken = function () {
     var rightWingGeom = new THREE.BoxGeometry(2, 30, 20);
     var rightWingMate = new THREE.MeshPhongMaterial({ color: Colors.yellow });
     var rightWing = new THREE.Mesh(rightWingGeom, rightWingMate);
-    rightWing.position.set(-25, -40, -25);
+    rightWing.position.set(-25, -30, -25);
     leftWing.rotation.set(0, 10, 10);
     rightWing.receiveShadow = true;
     this.mesh.add(rightWing)

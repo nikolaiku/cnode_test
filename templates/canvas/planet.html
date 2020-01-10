@@ -14,6 +14,27 @@
             height: 100%
         }
 
+        #panel {
+            position: absolute;
+            top: 0;
+            z-index: 100;
+            background-color: #ffffff;
+            padding: 5px;
+        }
+
+        #panel .item {
+            margin-bottom: 5px;
+        }
+
+        #panel .item .title {
+            width: 70px;
+            display: inline-block;
+        }
+
+        #panel .item input {
+            width: 20px;
+        }
+
         #world {
             position: absolute;
             width: 100%;
@@ -26,10 +47,61 @@
 </head>
 
 <body>
+    <div id="panel">
+        <!-- <div class="btn">
+            lalala
+        </div> -->
+        参数面板
+        <div class="item" num="0">
+            <span class="title">position</span>
+            <span>x:
+                <input type="text" name="x" />
+            </span>
+            <span>y:
+                <input type="text" name="y" />
+            </span>
+            <span>z:
+                <input type="text" name="z" />
+            </span>
+        </div>
+        <div class="item" num="1">
+            <span class="title">rotation</span>
+            <span>x:
+                <input type="text" name="x" />
+            </span>
+            <span>y:
+                <input type="text" name="y" />
+            </span>
+            <span>z:
+                <input type="text" name="z" />
+            </span>
+        </div>
+        <div class="item" num="2">
+            <span class="title">scale</span>
+            <span>x:
+                <input type="text" name="x" />
+            </span>
+            <span>y:
+                <input type="text" name="y" />
+            </span>
+            <span>z:
+                <input type="text" name="z" />
+            </span>
+        </div>
+    </div>
     <div id="world"></div>
 </body>
+<script src="/static/lib/jquery-3.0.0.min.js"></script>
 <script src="/static/js/canvas/three.min.js"></script>
 <script src="/static/js/canvas/planet/test.js"></script>
-<!-- <script src="/static/js/canvas/planet/planet.js"></script> -->
+<script>
+    $("#panel .btn").on("click", function () {
+        $("#panel .item").trigger("click")
+    })
+
+    $("#panel .item").on("click", function () {
+        console.log('item clicked')
+    })
+</script>
 
 </html>

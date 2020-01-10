@@ -1,3 +1,40 @@
+var chickParams = {
+    "position": {
+        "id": 0,
+        "x": 0,
+        "y": 100,
+        "z": 0
+    },
+    "rotation": {
+        "id": 1,
+        "x": 0,
+        "y": 0,
+        "z": 0
+    },
+    "scale": {
+        "id": 2,
+        "x": 0,
+        "y": 0,
+        "z": 0
+    }
+}
+// $('#panel').
+
+
+
+
+$("#panel input").on("blur", function () {
+    console.log($(this).parents(".item").attr("num"), $(this).attr("name"), $(this).val())
+
+    var $form = $(this).parents("#panel")
+})
+
+
+
+
+
+
+
 //COLORS
 var Colors = {
     red: 0xf25346,
@@ -6,7 +43,7 @@ var Colors = {
     pink: 0xF5986E,
     brownDark: 0x23190f,
     blue: 0x68c3c0,
-    yellow: 0xFAFF12,
+    yellow: 0xFFFF8E,
     black: 0x000000
 };
 
@@ -24,7 +61,6 @@ var HEIGHT, WIDTH,
 //INIT THREE JS, SCREEN AND MOUSE EVENTS
 
 function createScene() {
-
     HEIGHT = window.innerHeight;
     WIDTH = window.innerWidth;
 
@@ -41,8 +77,8 @@ function createScene() {
     );
     scene.fog = new THREE.Fog(0xf7d9aa, 100, 950);
     camera.position.x = 0;
-    camera.position.z = 200;
-    camera.position.y = 100;
+    camera.position.z = 300;
+    camera.position.y = 50;
 
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(WIDTH, HEIGHT);
@@ -172,8 +208,9 @@ Sky = function () {
 }
 
 Sea = function () {
-    var geom = new THREE.CylinderGeometry(600, 600, 800, 40, 10);
-    geom.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
+    // var geom = new THREE.CylinderGeometry(600, 600, 800, 40, 10);
+    var geom = new THREE.BoxGeometry(600, 300, 300);
+    // geom.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
     var mat = new THREE.MeshPhongMaterial({
         color: Colors.blue,
         transparent: true,
@@ -291,14 +328,19 @@ var chick;
 
 function createChicken() {
     chick = new Chicken();
-    chick.mesh.position.y = 100;
-    chick.mesh.rotation.y += 8;
+    // chick.mesh.scale.set(.25, .25, .25);
+    // chick.mesh.position.set(0, 100, 0)
+    // chick.mesh.rotation.set(0, 8, 0)
+    // chick.mesh.rotateX(39)
+    chick.mesh.rotateY(1.6)
+    // chick.mesh.rotateZ(-90)
+
     scene.add(chick.mesh);
 }
 
 function createSea() {
     sea = new Sea();
-    sea.mesh.position.y = -600;
+    sea.mesh.position.y = -230;
     scene.add(sea.mesh);
 }
 
@@ -311,7 +353,7 @@ function createSky() {
 function loop() {
     updateChicken();
     // updatePlane();
-    sea.mesh.rotation.z += .005;
+    // sea.mesh.rotation.z += .005;
     sky.mesh.rotation.z += .01;
     renderer.render(scene, camera);
     requestAnimationFrame(loop);

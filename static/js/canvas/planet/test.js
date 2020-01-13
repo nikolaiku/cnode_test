@@ -251,7 +251,10 @@ Chicken = function () {
 
     // 身体 CylinderBufferGeometry
     var bodyGeom = new THREE.CylinderBufferGeometry(20, 40, 90, 4);
-    var bodyMate = new THREE.MeshPhongMaterial({ color: Colors.yellow, shading: THREE.FlatShading });
+    var bodyMate = new THREE.MeshPhongMaterial({
+        color: 0xffde79,
+        shininess: 0
+    });
     var body = new THREE.Mesh(bodyGeom, bodyMate);
     body.castShadow = true;
     body.receiveShadow = true;
@@ -259,7 +262,10 @@ Chicken = function () {
 
     // 左眼睛 和 左瞳孔    BoxGeometry
     var leftEyeGeom = new THREE.BoxGeometry(3, 20, 20);
-    var leftEyeMate = new THREE.MeshPhongMaterial({ color: Colors.white, shading: THREE.FlatShading });
+    var leftEyeMate = new THREE.MeshPhongMaterial({
+        color: 0xffffff,
+        shininess: 0
+    });
     this.leftEye = new THREE.Mesh(leftEyeGeom, leftEyeMate);
     this.leftEye.position.set(-20, 30, 15);
     this.leftEye.rotateY(1);
@@ -267,14 +273,20 @@ Chicken = function () {
     this.leftEye.receiveShadow = true;
 
     var leftPupilGeom = new THREE.BoxGeometry(4, 5, 5);
-    var leftPupilMate = new THREE.MeshPhongMaterial({ color: Colors.black });
+    var leftPupilMate = new THREE.MeshPhongMaterial({
+        color: 0x000000,
+        shininess: 0
+    });
     var leftPupil = new THREE.Mesh(leftPupilGeom, leftPupilMate);
     this.leftEye.add(leftPupil)
     this.mesh.add(this.leftEye)
 
     // 右眼睛 和 右瞳孔    BoxGeometry
     var rightEyeGeom = new THREE.BoxGeometry(4, 20, 20);
-    var rightEyeMate = new THREE.MeshPhongMaterial({ color: Colors.white, shading: THREE.FlatShading });
+    var rightEyeMate = new THREE.MeshPhongMaterial({
+        color: 0xffffff,
+        shininess: 0
+    });
     this.rightEye = new THREE.Mesh(rightEyeGeom, rightEyeMate);
     this.rightEye.position.set(-20, 30, -15);
     this.leftEye.rotateY(-1);
@@ -282,7 +294,10 @@ Chicken = function () {
     this.rightEye.receiveShadow = true;
 
     var rightPupilGeom = new THREE.BoxGeometry(4, 5, 5);
-    var rightPupilMate = new THREE.MeshPhongMaterial({ color: Colors.black });
+    var rightPupilMate = new THREE.MeshPhongMaterial({
+        color: 0x000000,
+        shininess: 0
+    });
     var rightPupil = new THREE.Mesh(rightPupilGeom, rightPupilMate);
     this.rightEye.add(rightPupil)
     this.mesh.add(this.rightEye)

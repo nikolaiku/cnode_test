@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+   
     <title>My first planet</title>
     <style>
         body {
@@ -125,8 +126,9 @@
         window.print()
     })
 
+    var ips = "192.168.21.74"
     var qrcode = new QRCode("qrcode", {
-        text: "http://www.runoob.com",
+        text: `http://${ips}:2333`,
         width: 128,
         height: 128,
         colorDark: "#000000",

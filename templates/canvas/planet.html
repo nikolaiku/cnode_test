@@ -42,11 +42,30 @@
             overflow: hidden;
             background-color: rgb(224, 218, 205)
         }
+
+        #qrcode {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            background-color: #ffffff;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        #print {
+            position: absolute;
+            top: 0;
+            z-index: 100;
+            background-color: #ffffff;
+            padding: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
-    <div id="panel">
+    <!-- <div id="panel">
         参数面板
         <div class="item" num="0">
             <span class="title">position</span>
@@ -84,11 +103,14 @@
                 <input type="text" name="z" />
             </span>
         </div>
-    </div>
+    </div> -->
+    <div id="qrcode"></div>
     <div id="world"></div>
+    <div id="print">打印</div>
 </body>
 <script src="/static/lib/jquery-3.0.0.min.js"></script>
 <script src="/static/js/canvas/three.min.js"></script>
+<script src="/static/lib/qrcode.min.js"></script>
 <script src="/static/js/canvas/planet/test1.js"></script>
 <script>
     $("#panel .btn").on("click", function () {
@@ -98,6 +120,19 @@
     $("#panel .item").on("click", function () {
         console.log('item clicked')
     })
+
+    $("#print").on("click", function () {
+        window.print()
+    })
+
+    var qrcode = new QRCode("qrcode", {
+        text: "http://www.runoob.com",
+        width: 128,
+        height: 128,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
 </script>
 
 </html>

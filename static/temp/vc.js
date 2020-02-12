@@ -8,11 +8,11 @@ const data = {
       "phone": 17521086256,
       "startJob": "20150422",
       "items": [
-        ["ES6/7", "h5"],
+        ["ES6", "ES7"],
         ["vue", "express", "nuxt", "jquery"],
         ["nunjucks", "ejs", "juicer"],
         ["git", "http"],
-        ["elementUI", "bootstrap"],
+        ["elementUI", "View UI", "bootstrap"],
         ["hybrid混开", "微信支付及小程序"],
         ["webpack", "phaser"]
       ]
@@ -27,8 +27,8 @@ const data = {
       "startTime": "2019.08",
       "endTime": "至今",
       "items": [
-        "修复了450+个英语课件系统的bug",
-        "使用phaser游戏引擎完成课件中宠物养成系统的游戏动效"
+        "在VC项目组，修复了450+个英语课件系统的bug；",
+        "在IW项目组，调研并使用2D游戏引擎phaser完成课件中宠物养成系统的游戏动效；"
       ],
       "demos": [
         "http://192.144.204.141:3007/panda"
